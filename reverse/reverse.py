@@ -47,4 +47,32 @@ class LinkedList:
 
     def reverse_list(self, node, prev):
         # You must use recursion for this solution
-        pass
+        # case for if no node exists
+        if not node:
+            return None
+        # base case. If there is no next node, it has been sorted
+        if node.next_node == None:
+            # Still need to set the next node to the previous
+            node.set_next(prev)
+            # Te head will be this node
+            self.head = node
+            return
+        else:
+            # Saving a temp variable to hold the next node
+            next = node.get_next()
+            # reversing this node, setting next to prevous
+            node.set_next(prev)
+            # performing the function again on the next node
+            # Which we had saved in the temp variable
+            self.reverse_list(node = next, prev = node)
+"""
+Alright, so I see there's an input of 'prev'
+but that's not given, I'll set it to None as default.
+
+I need to check if the next_node == None, because that means
+I've reached the end of the list, and it should be fully reversed,
+so I can set that node to the list's head, then return
+
+Otherwise, I need to set the next_node's next to the current node, 
+then do it for the next nodes
+"""
