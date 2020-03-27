@@ -26,17 +26,23 @@ class RingBuffer:
 			# but, if the next is none, which means we're at the end, we need to replace
 			# that item, then set curent to head again
 			if self.current.next == None:
-				previous = self.current.prev
-				self.storage.delete(self.current)
-				previous.insert_after(item)
+				self.current.value = item
 				self.current = self.storage.head
+				# previous = self.current.prev
+				# self.storage.delete(self.current)
+				# previous.insert_after(item)
+				# self.current = self.storage.head
 			# else, if the next node is not the head
 			else:
+				self.current.value = item
+				self.current = self.current.next
+
+
 				# creating a temp variable for the next node
-				self.current.insert_before(item)
-				next = self.current.next
-				self.storage.delete(self.current)
-				self.current = next
+				# self.current.insert_before(item)
+				# next = self.current.next
+				# self.storage.delete(self.current)
+				# self.current = next
 				
 				# next = self.current.next
 				# self.storage.delete(self.current)
